@@ -3,6 +3,7 @@ package com.revature.eval.java.core;
 import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class EvaluationService {
 
@@ -15,7 +16,7 @@ public class EvaluationService {
 	 */
 	public String reverse(String string) {
 		char[] reversed = new char[string.length()];
-		for (int i = reversed.length - 1, j=0; i >= 0; i--, j++) {
+		for (int i = reversed.length - 1, j = 0; i >= 0; i--, j++) {
 			reversed[j] = string.charAt(i);
 		}
 		return new String(reversed);
@@ -30,8 +31,19 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		// for (int i = 0; i <= phrase.length(); i++) {
+		// for this I want to select the first letter in each String
+		// I also want to select every letter following a space or dash
+		// I then want to parse them into an empty string
+		String acronym = "";
+		for (int i = 0; i < phrase.length(); i++) {
+			if (Character.isUpperCase(phrase.charAt(i)))  {
+
+				acronym += phrase.charAt(i);
+			}
+		}
+		return acronym;
+
 	}
 
 	/**
@@ -84,7 +96,9 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
+			if {
+				double sideOne || double sideTwo != double sideThree			
+			}
 			return false;
 		}
 
@@ -166,8 +180,40 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
+			TreeMap<Integer, Integer> tmap = new TreeMap<Integer, Integer>();
+
+			Object[] arr = null;
+			for (int i = 0; i < arr.length; i++) {
+				Integer c = tmap.get(arr[i]);
+
+				if (tmap.get(arr[i]) == null)
+					tmap.put((Integer) arr[i], 1);
+
+				else
+					tmap.put((Integer) arr[i], ++c);
+			}
+
+			for (Map.Entry m : tmap.entrySet())
+				System.out.println("Frequency of " + m.getKey() + " is " + m.getValue());
+			return null;
+		}
+
+		String[] args() {
+			//String[] arr1 = new String[]();
+			//printFreq(arr1);
+		
+
+		//public static void main(String[] args) {
+			//int arr[] = { "Olly","Olly","In","Come","Free"};
+			//printFreq(arr);
+		
 		return null;
+	
+}
+
+	private void printFreq(int[] arr) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**
@@ -378,6 +424,9 @@ public class EvaluationService {
 		public static String encode(String string) {
 			// TODO Write an implementation for this method declaration
 			return null;
+			// for this I would simply send all of the letters in the alphabet into an array
+			// for comparison
+			// I would compare the index of each array to the index
 		}
 
 		/**
@@ -466,6 +515,7 @@ public class EvaluationService {
 	public int getSumOfMultiples(int i, int[] set) {
 		// TODO Write an implementation for this method declaration
 		return 0;
+		// this is basically a fizzbuzz challenge
 	}
 
 	/**
