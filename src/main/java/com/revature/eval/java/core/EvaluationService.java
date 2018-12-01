@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -37,7 +38,7 @@ public class EvaluationService {
 		// I then want to parse them into an empty string
 		String acronym = "";
 		for (int i = 0; i < phrase.length(); i++) {
-			if (Character.isUpperCase(phrase.charAt(i)))  {
+			if (Character.isUpperCase(phrase.charAt(i))) {
 
 				acronym += phrase.charAt(i);
 			}
@@ -96,19 +97,21 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			if {
-				double sideOne || double sideTwo != double sideThree			
+			{
+				if(sideOne!=sideTwo && sideTwo!=sideThree);
 			}
 			return false;
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
+			if ((sideOne==sideTwo && sideTwo!=sideThree ) || (sideOne!=sideTwo && sideThree==sideOne) || (sideThree==sideTwo && sideThree!=sideOne))
+			return false;
 			return false;
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
+			 if(sideOne!=sideTwo && sideTwo!=sideThree && sideThree!=sideOne)
+			return false;
 			return false;
 		}
 
@@ -129,9 +132,97 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+	public static int getScrabbleScore(String string) {
+		int score = 0;
+		
+		for(int i = 0; i < string.length();i++)
+		{
+			switch(string.toUpperCase().charAt(i))
+			{
+			case 'A':
+				score += 1;
+				break;
+			case 'B':
+				score += 3;
+				break;
+			case 'C':
+				score += 3;
+				break;
+			case 'D':
+				score += 2;
+				break;
+			case 'E':
+				score += 1;
+				break;
+			case 'F':
+				score += 4;
+				break;
+			case 'G':
+				score += 2;
+				break;
+			case 'H':
+				score += 4;
+				break;
+			case 'I':
+				score += 1;
+				break;
+			case 'J':
+				score += 8;
+				break;
+			case 'K':
+				score += 5;
+				break;
+			case 'L':
+				score += 1;
+				break;
+			case 'M':
+				score += 3;
+				break;
+			case 'N':
+				score += 1;
+				break;
+			case 'O':
+				score += 1;
+				break;
+			case 'P':
+				score += 3;
+				break;
+			case 'Q':
+				score += 10;
+				break;
+			case 'R':
+				score += 1;
+				break;
+			case 'S':
+				score += 1;
+				break;
+			case 'T':
+				score += 1;
+				break;
+			case 'U':
+				score += 1;
+				break;
+			case 'V':
+				score += 4;
+				break;
+			case 'W':
+				score += 4;
+				break;
+			case 'X':
+				score += 8;
+				break;
+			case 'Y':
+				score += 4;
+				break;
+			case 'Z':
+				score += 10;
+				break;	
+			default:
+				System.out.println("This isn't a letter");
+				break;
+			}
+		}
+		return score;
 	}
 
 	/**
@@ -165,9 +256,28 @@ public class EvaluationService {
 	 * Note: As this exercise only deals with telephone numbers used in
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
-	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	public static String cleanPhoneNumber(String string) throws IllegalArgumentException {
+		if (string.contains("[A-Za-z!@#%$*&]+")) {
+			string = "1";
+		}
+		String result = "0";
+		String string1 = string.replaceAll("[^0-9]", "");
+		if (string1.charAt(0) == 1) {
+			result = "1";
+		}
+		if (string1.length() > 11 || string1.length() < 10) {
+			string1 = "1";
+		}
+		char test = string1.charAt(0);
+		if (test == '1') {
+			result = string1.substring(1);
+		}
+		if (result != "0") {
+			throw new IllegalArgumentException("Please try again.");
+		} else {
+			// System.out.println(string1);
+			return string1;
+		}
 	}
 
 	/**
@@ -180,40 +290,39 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-			TreeMap<Integer, Integer> tmap = new TreeMap<Integer, Integer>();
+		TreeMap<Integer, Integer> tmap = new TreeMap<Integer, Integer>();
 
-			Object[] arr = null;
-			for (int i = 0; i < arr.length; i++) {
-				Integer c = tmap.get(arr[i]);
+		Object[] arr = null;
+		for (int i = 0; i < arr.length; i++) {
+			Integer c = tmap.get(arr[i]);
 
-				if (tmap.get(arr[i]) == null)
-					tmap.put((Integer) arr[i], 1);
+			if (tmap.get(arr[i]) == null)
+				tmap.put((Integer) arr[i], 1);
 
-				else
-					tmap.put((Integer) arr[i], ++c);
-			}
-
-			for (Map.Entry m : tmap.entrySet())
-				System.out.println("Frequency of " + m.getKey() + " is " + m.getValue());
-			return null;
+			else
+				tmap.put((Integer) arr[i], ++c);
 		}
 
-		String[] args() {
-			//String[] arr1 = new String[]();
-			//printFreq(arr1);
-		
-
-		//public static void main(String[] args) {
-			//int arr[] = { "Olly","Olly","In","Come","Free"};
-			//printFreq(arr);
-		
+		for (Map.Entry m : tmap.entrySet())
+			System.out.println("Frequency of " + m.getKey() + " is " + m.getValue());
 		return null;
-	
-}
+	}
+
+	String[] args() {
+		// String[] arr1 = new String[]();
+		// printFreq(arr1);
+
+		// public static void main(String[] args) {
+		// int arr[] = { "Olly","Olly","In","Come","Free"};
+		// printFreq(arr);
+
+		return null;
+
+	}
 
 	private void printFreq(int[] arr) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**
@@ -255,7 +364,7 @@ public class EvaluationService {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
+			// int x = t.binarySearch(t,6);
 			return 0;
 		}
 
@@ -289,11 +398,41 @@ public class EvaluationService {
 	 * See http://en.wikipedia.org/wiki/Pig_latin for more details.
 	 * 
 	 * @param string
+	 * @param word 
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		string = string.toLowerCase();
+		char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
+		String result = "";
+		int start = 0;
+		int vowel = 0;
+		int end = string.length();
+		if (string.charAt(0) == vowels[0] || string.charAt(0) == vowels[1] || string.charAt(0) == vowels[2]
+				|| string.charAt(0) == vowels[3] || string.charAt(0) == vowels[4]) {
+			result = string + "ay";
+			return result;
+		}
+
+		for (int i = 0; i < string.length(); i++) {
+			for (int j = 0; j < vowels.length; j++) {
+				if (string.charAt(i) == vowels[j] /*&& string.charAt(i - 1) != 'q'*/) {
+					vowel = i;
+					String beginning = string.substring(vowel, end);
+					String ending = string.substring(start, vowel);
+					result = beginning + ending + "ay";
+					return result;
+				} else if (string.charAt(i) == vowels[j] && string.charAt(i - 1) == 'q') {
+					vowel = i + 1;
+					String beginning = string.substring(vowel, end);
+					String ending = string.substring(start, vowel);
+					result = beginning + ending + "ay";
+					return result;
+				}
+			}
+		}
+
+		return result;
 	}
 
 	/**
@@ -311,8 +450,21 @@ public class EvaluationService {
 	 * @param input
 	 * @return
 	 */
-	public boolean isArmstrongNumber(int input) {
+	public static boolean isArmstrongNumber(int input) {
 		// TODO Write an implementation for this method declaration
+		int i = 0,a,temp;
+		
+		temp = input;
+		while(input>0)
+		{
+			a = input%10;
+			input = input/10;
+			i = i+(a*a*a);
+		}
+		if(temp == i)
+		{
+			return true;
+		}
 		return false;
 	}
 
@@ -329,6 +481,8 @@ public class EvaluationService {
 	public List<Long> calculatePrimeFactorsOf(long l) {
 		// TODO Write an implementation for this method declaration
 		return null;
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**
