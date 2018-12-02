@@ -130,27 +130,27 @@ public class EvaluationServiceTest {
 	 ******************************************************************/
 	@Test
 	public void testAValuableLetter() {
-		assertEquals(4, evaluationService.getScrabbleScore("f"));
+		assertEquals(4, EvaluationService.getScrabbleScore("f"));
 	}
 
 	@Test
 	public void testAShortValuableWord() {
-		assertEquals(12, evaluationService.getScrabbleScore("zoo"));
+		assertEquals(12, EvaluationService.getScrabbleScore("zoo"));
 	}
 
 	@Test
 	public void testAMediumWord() {
-		assertEquals(6, evaluationService.getScrabbleScore("street"));
+		assertEquals(6, EvaluationService.getScrabbleScore("street"));
 	}
 
 	@Test
 	public void testAMediumValuableWord() {
-		assertEquals(22, evaluationService.getScrabbleScore("quirky"));
+		assertEquals(22, EvaluationService.getScrabbleScore("quirky"));
 	}
 
 	@Test
 	public void testALongMixCaseWord() {
-		assertEquals(41, evaluationService.getScrabbleScore("OxyphenButazone"));
+		assertEquals(41, EvaluationService.getScrabbleScore("OxyphenButazone"));
 	}
 
 	/*******************************************************************
@@ -159,36 +159,36 @@ public class EvaluationServiceTest {
 	@Test
 	public void cleansTheNumber() {
 		final String expectedNumber = "2234567890";
-		final String actualNumber = evaluationService.cleanPhoneNumber("(223) 456-7890");
+		final String actualNumber = EvaluationService.cleanPhoneNumber("(223) 456-7890");
 		assertEquals(expectedNumber, actualNumber);
 	}
 
 	@Test
 	public void cleansNumbersWithDots() {
 		final String expectedNumber = "2234567890";
-		final String actualNumber = evaluationService.cleanPhoneNumber("223.456.7890");
+		final String actualNumber = EvaluationService.cleanPhoneNumber("223.456.7890");
 		assertEquals(expectedNumber, actualNumber);
 	}
 
 	@Test
 	public void cleansNumbersWithMultipleSpaces() {
 		final String expectedNumber = "2234567890";
-		final String actualNumber = evaluationService.cleanPhoneNumber("223 456   7890   ");
+		final String actualNumber = EvaluationService.cleanPhoneNumber("223 456   7890   ");
 		assertEquals(expectedNumber, actualNumber);
 	}
 
 	@Test
 	public void invalidWhenMoreThan11Digits() {
 		expectedException.expect(IllegalArgumentException.class);
-		evaluationService.cleanPhoneNumber("321234567890");
+		EvaluationService.cleanPhoneNumber("321234567890");
 	}
 
 	@Test
 	public void invalidWithNonNumeric() {
 		expectedException.expect(IllegalArgumentException.class);
-		evaluationService.cleanPhoneNumber("123-abc-7890");
+		EvaluationService.cleanPhoneNumber("123-abc-7890");
 		expectedException.expect(IllegalArgumentException.class);
-		evaluationService.cleanPhoneNumber("123-@:!-7890");
+		EvaluationService.cleanPhoneNumber("123-@:!-7890");
 	}
 
 	/*******************************************************************
@@ -334,35 +334,35 @@ public class EvaluationServiceTest {
 	public void singleDigitsAreArmstrongNumbers() {
 		int input = 5;
 
-		assertTrue(evaluationService.isArmstrongNumber(input));
+		assertTrue(EvaluationService.isArmstrongNumber(input));
 	}
 
 	@Test
 	public void noTwoDigitArmstrongNumbers() {
 		int input = 10;
 
-		assertFalse(evaluationService.isArmstrongNumber(input));
+		assertFalse(EvaluationService.isArmstrongNumber(input));
 	}
 
 	@Test
 	public void threeDigitNumberIsArmstrongNumber() {
 		int input = 153;
 
-		assertTrue(evaluationService.isArmstrongNumber(input));
+		assertTrue(EvaluationService.isArmstrongNumber(input));
 	}
 
 	@Test
 	public void threeDigitNumberIsNotArmstrongNumber() {
 		int input = 100;
 
-		assertFalse(evaluationService.isArmstrongNumber(input));
+		assertFalse(EvaluationService.isArmstrongNumber(input));
 	}
 
 	@Test
 	public void fourDigitNumberIsArmstrongNumber() {
 		int input = 9474;
 
-		assertTrue(evaluationService.isArmstrongNumber(input));
+		assertTrue(EvaluationService.isArmstrongNumber(input));
 	}
 
 	/*******************************************************************

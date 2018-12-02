@@ -1,7 +1,9 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -290,22 +292,18 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		TreeMap<Integer, Integer> tmap = new TreeMap<Integer, Integer>();
-
-		Object[] arr = null;
-		for (int i = 0; i < arr.length; i++) {
-			Integer c = tmap.get(arr[i]);
-
-			if (tmap.get(arr[i]) == null)
-				tmap.put((Integer) arr[i], 1);
-
-			else
-				tmap.put((Integer) arr[i], ++c);
+		HashMap<String, Integer> maps = new HashMap<String, Integer>();
+		string = string.replaceAll("[\n]", "");
+		String[] array = string.split("[ ,]");
+		for (int i = 0; i < array.length; ++i) {
+			Integer c = maps.get(array[i]);
+			if (maps.get(array[i]) == null) {
+				maps.put(array[i], 1);
+			} else {
+				maps.put(array[i], ++c);
+			}
 		}
-
-		for (Map.Entry m : tmap.entrySet())
-			System.out.println("Frequency of " + m.getKey() + " is " + m.getValue());
-		return null;
+		return maps;
 	}
 
 	String[] args() {
@@ -317,11 +315,6 @@ public class EvaluationService {
 		// printFreq(arr);
 
 		return null;
-
-	}
-
-	private void printFreq(int[] arr) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -479,10 +472,21 @@ public class EvaluationService {
 	 * @return
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
-		return null;
-		// TODO Auto-generated method stub
-		
+		List<Long> list = new ArrayList<Long>();
+		if(l == 2) {
+			list.add(l);
+			return list;
+		}
+		for(long i = 2; i <= l; i++) {
+			if(l % i == 0) {
+					l = l/i;
+					System.out.println(l);
+					list.add(i);
+					i=1;
+			}
+		}
+		System.out.println(list);
+		return list;
 	}
 
 	/**
@@ -520,8 +524,29 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+
+			StringBuilder cipherText = new StringBuilder();
+
+			char rotation = (char) key;
+
+			for (int i = 0; i < string.length(); i++) {
+				char temp = string.charAt(i);
+				if (Character.isLetter(temp)) {
+					if (Character.isLowerCase(temp)) {
+						temp = (char) (string.charAt(i) + rotation);
+						if (temp > 'z') {
+							temp = (char) (string.charAt(i) - (26 - rotation));
+						}
+					} else if (Character.isUpperCase(temp)) {
+						temp = (char) (string.charAt(i) + rotation);
+						if (temp > 'Z') {
+							temp = (char) (string.charAt(i) - (26 - rotation));
+						}
+					}
+				}
+				cipherText.append(temp);
+			}
+			return cipherText.toString();
 		}
 
 	}
@@ -538,9 +563,23 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
-	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+	public List<Long> calculateNthPrime(int i) {
+		List<Long> list = new ArrayList<Long>();
+		long l = 0;
+		if(l == 2) {
+			list.add(l);
+			return list;
+		}
+		for(long i1 = 2; i1 <= l; i1++) {
+			if(l % i1 == 0) {
+					l = l/i1;
+					System.out.println(l);
+					list.add(i1);
+					i1=1;
+			}
+		}
+		System.out.println(list);
+		return list;
 	}
 
 	/**
@@ -569,18 +608,59 @@ public class EvaluationService {
 	 */
 	static class AtbashCipher {
 
-		/**
-		 * Question 13
-		 * 
-		 * @param string
-		 * @return
-		 */
+		 // Question 13
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
-			// for this I would simply send all of the letters in the alphabet into an array
-			// for comparison
-			// I would compare the index of each array to the index
+			string = string.toLowerCase();
+			char[] backAlphabet = {'z', 'y', 'x','w','v','u','t','s','r','q','p','o','n','m','l','k','j','i','h','g','f','e','d','c','b','a'};
+			char[] alphabet = {'a', 'b', 'c', 'd','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+			String loweredString = string.replaceAll("[^a-z0-9]", "");
+			String cipheredString = "";
+			String buildString = "";
+			
+			for (int i = 0; i < loweredString.length(); i++) {
+				char letter = loweredString.charAt(i);
+				for (int j = 0; j < alphabet.length; j++) {
+					if (j == 25 && letter != alphabet[j]){
+						buildString += letter;
+					}
+					if (letter == alphabet[j]) {
+						buildString += backAlphabet[j];
+						break;
+					}
+						
+				}
+			}
+			if (buildString.length() < 5) {
+				return buildString;
+			}
+			//the indexes
+			int lowBoi = 0;
+			int highBoi = 5;
+			
+			for (int k = 0; k < buildString.length()/5; k++) {
+				
+				if (highBoi > buildString.length()) {
+					highBoi = buildString.length();
+				}
+				
+				if (buildString.length() == highBoi) {
+					cipheredString += buildString.substring(lowBoi, highBoi);
+					break;
+				}
+				cipheredString += buildString.substring(lowBoi, highBoi) + " ";
+				
+				lowBoi += 5;
+				highBoi += 5;
+				
+			}
+			
+			// if buildString has length that is not multiple of 5, then concatenate the last bit of it. 
+			if (buildString.length() % 5 != 0) {
+				cipheredString += buildString.substring(lowBoi, buildString.length());
+			}
+			
+			
+			return cipheredString;
 		}
 
 		/**
@@ -590,8 +670,26 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			string = string.toLowerCase();
+			char[] reverseAlpha = {'z', 'y', 'x','w','v','u','t','s','r','q','p','o','n','m','l','k','j','i','h','g','f','e','d','c','b','a'};
+			char[] alphabet = {'a', 'b', 'c', 'd','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+			String stringDong = string.replaceAll("[^a-z0-9]", "");
+			String buildString = "";
+			
+			for (int i = 0; i < stringDong.length(); i++) {
+				char letter = stringDong.charAt(i);
+				for (int j = 0; j < alphabet.length; j++) {
+					if (j == 25 && letter != alphabet[j]){
+						buildString += letter;
+					}
+					if (letter == alphabet[j]) {
+						buildString += reverseAlpha[j];
+						break;
+					}
+						
+				}
+			}
+			return buildString;
 		}
 	}
 
@@ -618,10 +716,30 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isValidIsbn(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
-	}
 
+		int a = string.length();
+		if (a != 10)
+			return false;
+
+		int sum = 0;
+		for (int i = 0; i < 9; i++) {
+			int code = string.charAt(i) - '0';
+			if (0 > code || 9 < code)
+				return false;
+			sum += (code * (10 - i));
+
+		}
+
+		char end = string.charAt(9);
+		if (end != 'X' && (end < '0' || end > '9'))
+
+			return false;
+
+		sum += ((end == 'X') ? 10 : (end - '0'));
+
+		return (sum % 11 == 0);
+
+	}
 	/**
 	 * 16. Determine if a sentence is a pangram. A pangram (Greek: παν γράμμα, pan
 	 * gramma, "every letter") is a sentence using every letter of the alphabet at
@@ -636,8 +754,27 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		boolean[] findLetters = new boolean[26];
+		int index = 0;
+		for (int i = 0; i < string.length(); i++) {
+			if ('A' <= string.charAt(i) &&  
+                    string.charAt(i) <= 'Z') {
+                          
+                index = string.charAt(i) - 'A'; 
+			}
+            else if('a' <= string.charAt(i) &&  
+                        string.charAt(i) <= 'z') {
+                              
+                index = string.charAt(i) - 'a'; 
+            }
+			findLetters[index] = true;
+		}
+		  for (int j = 0; j <= 25; j++) 
+	            if (findLetters[j] == false) {
+	                return (false); 
+	            }
+		
+		return true;
 	}
 
 	/**
