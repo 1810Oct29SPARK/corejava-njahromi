@@ -1,14 +1,20 @@
 package com.revature.eval.java.core;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class EvaluationService {
+
+	/*
+	 * huge thanks to oracle docs, geeksforgeeks and javapoint for thorough
+	 * explanations of new and challenging subjects.
+	 */
 
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
@@ -34,7 +40,6 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// for (int i = 0; i <= phrase.length(); i++) {
 		// for this I want to select the first letter in each String
 		// I also want to select every letter following a space or dash
 		// I then want to parse them into an empty string
@@ -100,20 +105,22 @@ public class EvaluationService {
 
 		public boolean isEquilateral() {
 			{
-				if(sideOne!=sideTwo && sideTwo!=sideThree);
+				if (sideOne != sideTwo && sideTwo != sideThree)
+					;
 			}
 			return false;
 		}
 
 		public boolean isIsosceles() {
-			if ((sideOne==sideTwo && sideTwo!=sideThree ) || (sideOne!=sideTwo && sideThree==sideOne) || (sideThree==sideTwo && sideThree!=sideOne))
-			return false;
+			if ((sideOne == sideTwo && sideTwo != sideThree) || (sideOne != sideTwo && sideThree == sideOne)
+					|| (sideThree == sideTwo && sideThree != sideOne))
+				return false;
 			return false;
 		}
 
 		public boolean isScalene() {
-			 if(sideOne!=sideTwo && sideTwo!=sideThree && sideThree!=sideOne)
-			return false;
+			if (sideOne != sideTwo && sideTwo != sideThree && sideThree != sideOne)
+				return false;
 			return false;
 		}
 
@@ -136,11 +143,9 @@ public class EvaluationService {
 	 */
 	public static int getScrabbleScore(String string) {
 		int score = 0;
-		
-		for(int i = 0; i < string.length();i++)
-		{
-			switch(string.toUpperCase().charAt(i))
-			{
+
+		for (int i = 0; i < string.length(); i++) {
+			switch (string.toUpperCase().charAt(i)) {
 			case 'A':
 				score += 1;
 				break;
@@ -218,7 +223,7 @@ public class EvaluationService {
 				break;
 			case 'Z':
 				score += 10;
-				break;	
+				break;
 			default:
 				System.out.println("This isn't a letter");
 				break;
@@ -277,7 +282,6 @@ public class EvaluationService {
 		if (result != "0") {
 			throw new IllegalArgumentException("Please try again.");
 		} else {
-			// System.out.println(string1);
 			return string1;
 		}
 	}
@@ -307,13 +311,6 @@ public class EvaluationService {
 	}
 
 	String[] args() {
-		// String[] arr1 = new String[]();
-		// printFreq(arr1);
-
-		// public static void main(String[] args) {
-		// int arr[] = { "Olly","Olly","In","Come","Free"};
-		// printFreq(arr);
-
 		return null;
 
 	}
@@ -357,7 +354,6 @@ public class EvaluationService {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			// int x = t.binarySearch(t,6);
 			return 0;
 		}
 
@@ -391,7 +387,7 @@ public class EvaluationService {
 	 * See http://en.wikipedia.org/wiki/Pig_latin for more details.
 	 * 
 	 * @param string
-	 * @param word 
+	 * @param word
 	 * @return
 	 */
 	public String toPigLatin(String string) {
@@ -409,7 +405,7 @@ public class EvaluationService {
 
 		for (int i = 0; i < string.length(); i++) {
 			for (int j = 0; j < vowels.length; j++) {
-				if (string.charAt(i) == vowels[j] /*&& string.charAt(i - 1) != 'q'*/) {
+				if (string.charAt(i) == vowels[j] /* && string.charAt(i - 1) != 'q' */) {
 					vowel = i;
 					String beginning = string.substring(vowel, end);
 					String ending = string.substring(start, vowel);
@@ -445,17 +441,15 @@ public class EvaluationService {
 	 */
 	public static boolean isArmstrongNumber(int input) {
 		// TODO Write an implementation for this method declaration
-		int i = 0,a,temp;
-		
+		int i = 0, a, temp;
+
 		temp = input;
-		while(input>0)
-		{
-			a = input%10;
-			input = input/10;
-			i = i+(a*a*a);
+		while (input > 0) {
+			a = input % 10;
+			input = input / 10;
+			i = i + (a * a * a);
 		}
-		if(temp == i)
-		{
+		if (temp == i) {
 			return true;
 		}
 		return false;
@@ -473,16 +467,16 @@ public class EvaluationService {
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
 		List<Long> list = new ArrayList<Long>();
-		if(l == 2) {
+		if (l == 2) {
 			list.add(l);
 			return list;
 		}
-		for(long i = 2; i <= l; i++) {
-			if(l % i == 0) {
-					l = l/i;
-					System.out.println(l);
-					list.add(i);
-					i=1;
+		for (long i = 2; i <= l; i++) {
+			if (l % i == 0) {
+				l = l / i;
+				System.out.println(l);
+				list.add(i);
+				i = 1;
 			}
 		}
 		System.out.println(list);
@@ -566,16 +560,16 @@ public class EvaluationService {
 	public List<Long> calculateNthPrime(int i) {
 		List<Long> list = new ArrayList<Long>();
 		long l = 0;
-		if(l == 2) {
+		if (l == 2) {
 			list.add(l);
 			return list;
 		}
-		for(long i1 = 2; i1 <= l; i1++) {
-			if(l % i1 == 0) {
-					l = l/i1;
-					System.out.println(l);
-					list.add(i1);
-					i1=1;
+		for (long i1 = 2; i1 <= l; i1++) {
+			if (l % i1 == 0) {
+				l = l / i1;
+				System.out.println(l);
+				list.add(i1);
+				i1 = 1;
 			}
 		}
 		System.out.println(list);
@@ -608,58 +602,56 @@ public class EvaluationService {
 	 */
 	static class AtbashCipher {
 
-		 // Question 13
+		// Question 13
 		public static String encode(String string) {
 			string = string.toLowerCase();
-			char[] backAlphabet = {'z', 'y', 'x','w','v','u','t','s','r','q','p','o','n','m','l','k','j','i','h','g','f','e','d','c','b','a'};
-			char[] alphabet = {'a', 'b', 'c', 'd','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+			char[] backAlphabet = { 'z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q', 'p', 'o', 'n', 'm', 'l', 'k', 'j',
+					'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a' };
+			char[] alphabet = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
+					'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 			String loweredString = string.replaceAll("[^a-z0-9]", "");
 			String cipheredString = "";
 			String buildString = "";
-			
+
 			for (int i = 0; i < loweredString.length(); i++) {
 				char letter = loweredString.charAt(i);
 				for (int j = 0; j < alphabet.length; j++) {
-					if (j == 25 && letter != alphabet[j]){
+					if (j == 25 && letter != alphabet[j]) {
 						buildString += letter;
 					}
 					if (letter == alphabet[j]) {
 						buildString += backAlphabet[j];
 						break;
 					}
-						
+
 				}
 			}
 			if (buildString.length() < 5) {
 				return buildString;
 			}
-			//the indexes
+			// the indexes
 			int lowBoi = 0;
 			int highBoi = 5;
-			
-			for (int k = 0; k < buildString.length()/5; k++) {
-				
+
+			for (int k = 0; k < buildString.length() / 5; k++) {
+
 				if (highBoi > buildString.length()) {
 					highBoi = buildString.length();
 				}
-				
+
 				if (buildString.length() == highBoi) {
 					cipheredString += buildString.substring(lowBoi, highBoi);
 					break;
 				}
 				cipheredString += buildString.substring(lowBoi, highBoi) + " ";
-				
+
 				lowBoi += 5;
 				highBoi += 5;
-				
+
 			}
-			
-			// if buildString has length that is not multiple of 5, then concatenate the last bit of it. 
 			if (buildString.length() % 5 != 0) {
 				cipheredString += buildString.substring(lowBoi, buildString.length());
 			}
-			
-			
 			return cipheredString;
 		}
 
@@ -671,22 +663,24 @@ public class EvaluationService {
 		 */
 		public static String decode(String string) {
 			string = string.toLowerCase();
-			char[] reverseAlpha = {'z', 'y', 'x','w','v','u','t','s','r','q','p','o','n','m','l','k','j','i','h','g','f','e','d','c','b','a'};
-			char[] alphabet = {'a', 'b', 'c', 'd','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+			char[] reverseAlpha = { 'z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q', 'p', 'o', 'n', 'm', 'l', 'k', 'j',
+					'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a' };
+			char[] alphabet = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
+					'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 			String stringDong = string.replaceAll("[^a-z0-9]", "");
 			String buildString = "";
-			
+
 			for (int i = 0; i < stringDong.length(); i++) {
 				char letter = stringDong.charAt(i);
 				for (int j = 0; j < alphabet.length; j++) {
-					if (j == 25 && letter != alphabet[j]){
+					if (j == 25 && letter != alphabet[j]) {
 						buildString += letter;
 					}
 					if (letter == alphabet[j]) {
 						buildString += reverseAlpha[j];
 						break;
 					}
-						
+
 				}
 			}
 			return buildString;
@@ -740,6 +734,7 @@ public class EvaluationService {
 		return (sum % 11 == 0);
 
 	}
+
 	/**
 	 * 16. Determine if a sentence is a pangram. A pangram (Greek: παν γράμμα, pan
 	 * gramma, "every letter") is a sentence using every letter of the alphabet at
@@ -757,23 +752,20 @@ public class EvaluationService {
 		boolean[] findLetters = new boolean[26];
 		int index = 0;
 		for (int i = 0; i < string.length(); i++) {
-			if ('A' <= string.charAt(i) &&  
-                    string.charAt(i) <= 'Z') {
-                          
-                index = string.charAt(i) - 'A'; 
+			if ('A' <= string.charAt(i) && string.charAt(i) <= 'Z') {
+
+				index = string.charAt(i) - 'A';
+			} else if ('a' <= string.charAt(i) && string.charAt(i) <= 'z') {
+
+				index = string.charAt(i) - 'a';
 			}
-            else if('a' <= string.charAt(i) &&  
-                        string.charAt(i) <= 'z') {
-                              
-                index = string.charAt(i) - 'a'; 
-            }
 			findLetters[index] = true;
 		}
-		  for (int j = 0; j <= 25; j++) 
-	            if (findLetters[j] == false) {
-	                return (false); 
-	            }
-		
+		for (int j = 0; j <= 25; j++)
+			if (findLetters[j] == false) {
+				return (false);
+			}
+
 		return true;
 	}
 
@@ -786,8 +778,16 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		// solved using ChronoUnits which were added in java 8
+		long gigasecond = 1000000000;
+		if (!given.isSupported(ChronoUnit.SECONDS)) {
+			LocalDate date = (LocalDate) given;
+			LocalDateTime newDate = date.atStartOfDay();
+			return newDate.plus(gigasecond, ChronoUnit.SECONDS);
+		}
+
+		return given.plus(gigasecond, ChronoUnit.SECONDS);
+
 	}
 
 	/**
@@ -804,9 +804,21 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		// TODO Write an implementation for this method declaration
-		return 0;
-		// this is basically a fizzbuzz challenge
+		int sum = 0;
+		for (int j = i - 1; j >= 1; j--) {
+			for (int k = 0; k < set.length; k++) {
+				int look = 0;
+				if (j % set[k] == 0) {
+					sum += j;
+					look++;
+				}
+				if (look == 1) {
+					break;
+				}
+			}
+		}
+		return sum;
+
 	}
 
 	/**
@@ -846,8 +858,44 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isLuhnValid(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		string = string.replaceAll(" ", "");
+		int sum = 0;
+		if (string.length() % 2 == 0) {
+			for (int i = 0; i < string.length(); i++) {
+				if (i % 2 == 0) {
+					int placeholder = Character.getNumericValue(string.charAt(i));
+					placeholder *= 2;
+					if (placeholder > 9) {
+						placeholder -= 9;
+						sum += placeholder;
+					} else {
+						sum += placeholder;
+					}
+				} else {
+					sum += Character.getNumericValue(string.charAt(i));
+				}
+			}
+		} else {
+			for (int i = 0; i < string.length(); i++) {
+				if (i % 2 != 0) {
+					int placeholder = Character.getNumericValue(string.charAt(i));
+					placeholder *= 2;
+					if (placeholder > 9) {
+						placeholder -= 9;
+						sum += placeholder;
+					} else {
+						sum += placeholder;
+					}
+				} else {
+					sum += Character.getNumericValue(string.charAt(i));
+				}
+			}
+		}
+		if (sum % 10 == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -877,9 +925,23 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public int solveWordProblem(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+	public static int solveWordProblem(String string) {
+		int problem = 0;
+		String string1 = string.replaceAll("[A-Za-z?]", "");
+		string1 = string1.trim().replaceAll(" +", " ");
+		String string2[] = string1.split(" ");
+		int x = Integer.parseInt(string2[0]);
+		int y = Integer.parseInt(string2[1]);
+		if (string.contains("plus")) {
+			problem = x + y;
+		} else if (string.contains("minus")) {
+			problem = x - y;
+		} else if (string.contains("multiplied")) {
+			problem = x * y;
+		} else {
+			problem = x / y;
+		}
+		return problem;
 	}
 
 }

@@ -688,27 +688,27 @@ public class EvaluationServiceTest {
 	 ******************************************************************/
 	@Test
 	public void testSingleAddition1() {
-		assertEquals(2, evaluationService.solveWordProblem("What is 1 plus 1?"));
+		assertEquals(2, EvaluationService.solveWordProblem("What is 1 plus 1?"));
 	}
 
 	@Test
 	public void testSingleAdditionWithNegativeNumbers() {
-		assertEquals(-11, evaluationService.solveWordProblem("What is -1 plus -10?"));
+		assertEquals(-11, EvaluationService.solveWordProblem("What is -1 plus -10?"));
 	}
 
 	@Test
 	public void testSingleSubtraction() {
-		assertEquals(16, evaluationService.solveWordProblem("What is 4 minus -12?"));
+		assertEquals(16, EvaluationService.solveWordProblem("What is 4 minus -12?"));
 	}
 
 	@Test
 	public void testSingleMultiplication() {
-		assertEquals(-75, evaluationService.solveWordProblem("What is -3 multiplied by 25?"));
+		assertEquals(-75, EvaluationService.solveWordProblem("What is -3 multiplied by 25?"));
 	}
 
 	@Test
 	public void testSingleDivision() {
-		assertEquals(-11, evaluationService.solveWordProblem("What is 33 divided by -3?"));
+		assertEquals(-11, EvaluationService.solveWordProblem("What is 33 divided by -3?"));
 	}
 
 }
